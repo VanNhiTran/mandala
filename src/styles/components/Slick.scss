@@ -1,0 +1,115 @@
+.slick_wrapper {
+    .slick_item {
+        background-image: url('../../assets//images/feedback--background.png');
+        background-position: 100%;
+        background-repeat: no-repeat;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 0;
+        margin: 20px 0;
+
+        .ava .img-fluid {
+            img {
+                padding: 10px;
+                border-radius: 50%;
+                border: 1px solid #cbd4b3
+            }
+        }
+
+        .slick_content {
+            line-height: 25px;
+            padding-left: 50px;
+
+            .slick_info {
+                padding: 20px 0;
+
+                h6 {
+                    font-size: 15px;
+                }
+
+                span {
+                    color: #737373;
+                    font-size: 15px;
+                    font-style: italic;
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+
+    .slick-slider .slick-dots {
+        position: absolute;
+        bottom: 30px;
+        left: -28%;
+    }
+}
+
+.slick_wrapper_mobile {
+    display: none;
+    background: url('../../assets/images/feedback--background.png');
+    padding: 50px 0;
+
+    .slick_mobile-item {
+        .item-content {
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+            padding-bottom: 50px;
+        }
+
+        .item-author {
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 30px;
+            margin-left: 40px;
+
+            .author-ava {
+                padding-right: 30px;
+
+                img {
+                    width: 80px;
+                    padding: 10px;
+                    border-radius: 50%;
+                    border: 1px solid #cbd4b3
+                }
+            }
+
+            .author-info {
+                h6 {
+                    font-size: 15px;
+                    display: block;
+                    padding-bottom: 20px;
+                }
+
+                span {
+                    color: #737373;
+                    font-size: 14px;
+                    font-style: italic;
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+
+    .slick-slider .slick-dots {
+        bottom: 110px;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .slick_item .slick_content {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+@media only screen and (max-width: 574px) {
+    .slick_wrapper_mobile {
+        display: block;
+    }
+
+    .slick_wrapper {
+        display: none;
+    }
+}

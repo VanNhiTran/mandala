@@ -1,0 +1,24 @@
+@import "base/base";
+
+
+@import "helpers/variables";
+@import "helpers/mixins";
+
+@import "layouts/header";
+@import "layouts/footer";
+
+@import "pages/home";
+@import './pages/introduction.scss';
+@import './pages/news.scss';
+@import './pages/blogdetail.scss';
+@import './pages/error.scss';
+@import './pages/contact.scss';
+@import '../styles/components/listTable.scss';
+@import './pages/productdetail.scss';
+@import './pages/product.scss';
+@import './pages/cart.scss';
+
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+@import "./components/Slick.scss";
+@import "./components/Bestseller.scss"

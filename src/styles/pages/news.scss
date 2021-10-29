@@ -1,0 +1,135 @@
+.news {
+    padding-top: 100px;
+
+    &_top {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed #e6e6e6;
+
+        a {
+            padding-right: 15px;
+            text-decoration: none;
+            color: #789629;
+            font-size: 12px;
+
+            i {
+                padding-left: 5px;
+            }
+        }
+
+        .active {
+            color: #737373;
+
+            &:hover {
+                color: #789629;
+            }
+        }
+    }
+
+    h1 {
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    &_controlbar {
+        justify-content: space-between;
+        align-items: center;
+
+        .left {
+            font-size: 14px;
+
+            i {
+                margin-right: 10px;
+            }
+
+            .icon-right {
+                color: grey;
+            }
+        }
+
+        .right {
+            .page-link {
+                border: none;
+                color: black;
+            }
+        }
+    }
+
+    &_block {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        &-item {
+            padding-bottom: 20px;
+
+            .item_img {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .item_text {
+                font-size: 12px;
+
+                &-title {
+                    color: black;
+                    font-weight: 700;
+                    padding: 10px 0;
+                    display: block;
+                    text-decoration: none;
+                }
+
+                p {
+                    border-top: 1px solid #e6e6e6;
+                    padding-top: 10px;
+                    color: #4b4b4b;
+                    font-size: 12px;
+                    line-height: 20px;
+                }
+
+                &-author {
+                    display: block;
+                    border-bottom: 1px solid #e6e6e6;
+                    padding-bottom: 10px;
+                    margin: 10px 0;
+                    color: #b4b4b4;
+                    font-style: italic;
+                    text-decoration: none;
+                }
+
+                &-detail {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 10px;
+                    color: #b4b4b4;
+
+                    a {
+                        color: #b4b4b4;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .news {
+        &_block {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+}
+
+@media screen and (max-width: 574px) {
+    .news {
+        &_block {
+            grid-template-columns: 1fr;
+        }
+    }
+
+}
