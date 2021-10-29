@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import ReactPaginate from "react-paginate";
+import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import img1 from "../../assets/images/product_20.png";
@@ -10,8 +8,8 @@ import img3 from "../../assets/images/product_22.png";
 function Product() {
   const [show, setShow] = useState(0);
   const [typeLayout, setTypeLayout] = useState(true);
-  // const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-  const items = [
+
+  const productArr = [
     { img: img1, name: "OHUI" },
     { img: img2, name: "HOME" },
     { img: img3, name: "DEBORA" },
@@ -37,242 +35,91 @@ function Product() {
     { img: img2, name: "HOME" },
     { img: img3, name: "DEBORA" },
   ];
-
-  function Items({ currentItems }) {
-    return (
-      <>
-        {currentItems &&
-          currentItems.map((item) => {
-            if (typeLayout) {
-              return (
-                <div className="col-sm-4 col-6">
-                  <div className="product__content-item">
-                    <div className="item-img">
-                      <img src={item.img} alt="" />
-                    </div>
-                    <div className="item-text">
-                      <p>{item.name}</p>
-                      <span>Mỹ phẩm châu Âu</span>
-                      <p className="line"></p>
-                    </div>
-                    <div className="item-price d-flex justify-content-center">
-                      <div className="item-price_sale">
-                        <p>
-                          355.000<span>đ</span>
-                        </p>
-                      </div>
-                      <div className="item-price_normal">
-                        <p>
-                          450.000<span>đ</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="item-btn">
-                      <button>MUA HÀNG</button>
-                      <button>
-                        <i class="fa fa-heart"></i>
-                      </button>
-                      <button>
-                        <i class="fa fa-sync"></i>
-                      </button>
-                    </div>
-                  </div>
+  const renderProductItem = () => {
+    return productArr.map((item, index) => {
+      if (typeLayout) {
+        return (
+          <div className="col-sm-4 col-6" key={index}>
+            <div className="product__content-item">
+              <div className="item-img">
+                <img src={item.img} alt="" />
+              </div>
+              <div className="item-text">
+                <p>{item.name}</p>
+                <span>Mỹ phẩm châu Âu</span>
+                <p className="line"></p>
+              </div>
+              <div className="item-price d-flex justify-content-center">
+                <div className="item-price_sale">
+                  <p>
+                    355.000<span>đ</span>
+                  </p>
                 </div>
-              );
-            }
-            if (!typeLayout) {
-              return (
-                <div className="col-12">
-                  <div className="item_list d-flex">
-                    <div className="col-3">
-                      <div className="item_list-img">
-                        <img src={item.img} alt="" />
-                      </div>
-                    </div>
-                    <div className="col-9">
-                      <div className="item_list-content">
-                        <span>Mỹ phẩm châu Âu</span>
-                        <div className="content_rate d-flex">
-                          <div className="icon">
-                            <i class="fa fa-heart"></i>
-                            <i class="fa fa-heart"></i>
-                            <i class="fa fa-heart"></i>
-                            <i class="fa fa-heart"></i>
-                            <i class="fa fa-heart"></i>
-                          </div>
-                          <p>(4 lượt mua)</p>
-                        </div>
-                        <p className="des">
-                          Tự hào được ghi là năm mà Tiffany & Co là thành lập,
-                          bộ sưu tập mang tính biểu tượng này cung cấp cho một
-                          cái gật đầu với qua trong khi thể hiện một cảm giác
-                          hiện đại với kiểu dáng đẹp đường cong và đường nét
-                          mượt mà.
-                        </p>
-                        <p className="price">355.000đ</p>
-                      </div>
-                      <div className="item_list-btn">
-                        <button>MUA HÀNG</button>
-                        <button>
-                          <i class="fa fa-heart"></i>
-                        </button>
-                        <button>
-                          <i class="fa fa-sync"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                <div className="item-price_normal">
+                  <p>
+                    450.000<span>đ</span>
+                  </p>
                 </div>
-              );
-            }
-          })}
-      </>
-    );
-  }
-
-  function PaginatedItems({ itemsPerPage }) {
-    const [currentItems, setCurrentItems] = useState(null);
-    const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
-
-    useEffect(() => {
-      // Fetch items from another resources.
-      const endOffset = itemOffset + itemsPerPage;
-      setCurrentItems(items.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(items.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
-
-    const handlePageClick = (event) => {
-      const newOffset = (event.selected * itemsPerPage) % items.length;
-
-      setItemOffset(newOffset);
-    };
-    return (
-      <>
-        <Items currentItems={currentItems} />
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-        />
-      </>
-    );
-  }
-  // const productArr = [
-  //   { img: img1, name: "OHUI" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUI" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUIAAAA" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUI" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUIBBBB" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUI" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUICCCC" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  //   { img: img1, name: "OHUI" },
-  //   { img: img2, name: "HOME" },
-  //   { img: img3, name: "DEBORA" },
-  // ];
-  // const renderProductItem = () => {
-  //   return productArr.map((item, index) => {
-  //     if (typeLayout) {
-  //       return (
-  //         <div className="col-sm-4 col-6" key={index}>
-  //           <div className="product__content-item">
-  //             <div className="item-img">
-  //               <img src={item.img} alt="" />
-  //             </div>
-  //             <div className="item-text">
-  //               <p>{item.name}</p>
-  //               <span>Mỹ phẩm châu Âu</span>
-  //               <p className="line"></p>
-  //             </div>
-  //             <div className="item-price d-flex justify-content-center">
-  //               <div className="item-price_sale">
-  //                 <p>
-  //                   355.000<span>đ</span>
-  //                 </p>
-  //               </div>
-  //               <div className="item-price_normal">
-  //                 <p>
-  //                   450.000<span>đ</span>
-  //                 </p>
-  //               </div>
-  //             </div>
-  //             <div className="item-btn">
-  //               <button>MUA HÀNG</button>
-  //               <button>
-  //                 <i class="fa fa-heart"></i>
-  //               </button>
-  //               <button>
-  //                 <i class="fa fa-sync"></i>
-  //               </button>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       );
-  //     }
-  //     if (!typeLayout) {
-  //       return (
-  //         <div className="col-12">
-  //           <div className="item_list d-flex">
-  //             <div className="col-3">
-  //               <div className="item_list-img">
-  //                 <img src={item.img} alt="" />
-  //               </div>
-  //             </div>
-  //             <div className="col-9">
-  //               <div className="item_list-content">
-  //                 <span>Mỹ phẩm châu Âu</span>
-  //                 <div className="content_rate d-flex">
-  //                   <div className="icon">
-  //                     <i class="fa fa-heart"></i>
-  //                     <i class="fa fa-heart"></i>
-  //                     <i class="fa fa-heart"></i>
-  //                     <i class="fa fa-heart"></i>
-  //                     <i class="fa fa-heart"></i>
-  //                   </div>
-  //                   <p>(4 lượt mua)</p>
-  //                 </div>
-  //                 <p className="des">
-  //                   Tự hào được ghi là năm mà Tiffany & Co là thành lập, bộ sưu
-  //                   tập mang tính biểu tượng này cung cấp cho một cái gật đầu
-  //                   với qua trong khi thể hiện một cảm giác hiện đại với kiểu
-  //                   dáng đẹp đường cong và đường nét mượt mà.
-  //                 </p>
-  //                 <p className="price">355.000đ</p>
-  //               </div>
-  //               <div className="item_list-btn">
-  //                 <button>MUA HÀNG</button>
-  //                 <button>
-  //                   <i class="fa fa-heart"></i>
-  //                 </button>
-  //                 <button>
-  //                   <i class="fa fa-sync"></i>
-  //                 </button>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       );
-  //     }
-  //   });
-  // };
+              </div>
+              <div className="item-btn">
+                <button>MUA HÀNG</button>
+                <button>
+                  <i class="fa fa-heart"></i>
+                </button>
+                <button>
+                  <i class="fa fa-sync"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      if (!typeLayout) {
+        return (
+          <div className="col-12">
+            <div className="item_list d-flex">
+              <div className="col-3">
+                <div className="item_list-img">
+                  <img src={item.img} alt="" />
+                </div>
+              </div>
+              <div className="col-9">
+                <div className="item_list-content">
+                  <span>Mỹ phẩm châu Âu</span>
+                  <div className="content_rate d-flex">
+                    <div className="icon">
+                      <i class="fa fa-heart"></i>
+                      <i class="fa fa-heart"></i>
+                      <i class="fa fa-heart"></i>
+                      <i class="fa fa-heart"></i>
+                      <i class="fa fa-heart"></i>
+                    </div>
+                    <p>(4 lượt mua)</p>
+                  </div>
+                  <p className="des">
+                    Tự hào được ghi là năm mà Tiffany & Co là thành lập, bộ sưu
+                    tập mang tính biểu tượng này cung cấp cho một cái gật đầu
+                    với qua trong khi thể hiện một cảm giác hiện đại với kiểu
+                    dáng đẹp đường cong và đường nét mượt mà.
+                  </p>
+                  <p className="price">355.000đ</p>
+                </div>
+                <div className="item_list-btn">
+                  <button>MUA HÀNG</button>
+                  <button>
+                    <i class="fa fa-heart"></i>
+                  </button>
+                  <button>
+                    <i class="fa fa-sync"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    });
+  };
   return (
     <div className="product">
       <div className="product__top">
@@ -494,17 +341,14 @@ function Product() {
                   </div>
                 </div>
                 <div className="row">
-                  {/* {renderProductItem()} */}
-                  <PaginatedItems itemsPerPage={6} />
+                  {renderProductItem()}
+                  {/* <PaginatedItems itemsPerPage={6} /> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="py-5">
-        <PaginatedItems itemsPerPage={4} />
-      </div> */}
     </div>
   );
 }
